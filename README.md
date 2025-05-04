@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend_Kasir_App_NextJS
 
-## Getting Started
+## Deskripsi
 
-First, run the development server:
+**Frontend_Kasir_App_NextJS** adalah aplikasi frontend untuk sistem kasir restoran, dibangun menggunakan **Next.js 15 App Router**, **React**, dan **Tailwind CSS**. Aplikasi ini terhubung ke backend REST API dan mendukung berbagai peran pengguna (admin, kasir, dan pelayan) untuk mengelola pesanan, meja, menu, transaksi, dan pengguna lainnya.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Teknologi yang Digunakan
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- [Next.js 15 (App Router)](https://nextjs.org/docs/app)
+- React.js
+- Tailwind CSS
+- Axios
+- Context API
+- JWT Authentication
+- REST API Integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Instalasi
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone repository ini:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/username/Frontend_Kasir_App_NextJS.git
+  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Masuk ke direktori proyek:
 
-## Deploy on Vercel
+   ```bash
+   cd Frontend_Kasir_App_NextJS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Install semua dependensi:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+    npm install
+
+4. Buat file `.env` di root folder dan isi dengan konfigurasi berikut :
+   ```bash
+   BASE_URL=http://localhost:5000/api/v1
+   NEXT_PUBLIC_JWT_SECRET=9578
+   JWT_REFRESH_SECRET=123
+
+pastikan backend sudah berjalan di `http://localhost:5000`.
+
+---
+
+## Menjalankan Aplikasi
+Untuk memulai server development:
+
+  ```bash
+   npm run dev
+  ```
+
+Aplikasi akan berjalan di `http://localhost:3000`.
+
+
+## Struktur Folder
+
+---
+<pre>
+/frontend-kasir-app
+│
+├── .env
+├── package.json
+├── next.config.mjs
+├── tailwind.config.mjs
+│
+├── /public/
+│   ├── cashire.png
+│   ├── cashire1.png
+│   ├── userIcons.svg
+│   └── /assets/icons/
+│       ├── CartIcon.jsx
+│       ├── CashireIcons.jsx
+│       ├── CircleBackground.jsx
+│       ├── CloseIcons.jsx
+│       ├── ErrorIcons.jsx
+│       ├── HamburgerMenu.jsx
+│       ├── IconsList.jsx
+│       ├── IncomsIcons.jsx
+│       ├── MoonIcon.jsx
+│       ├── OrderIcons.jsx
+│       ├── SuccessIcon.jsx
+│       ├── SunIcon.jsx
+│       ├── TabelIcons.jsx
+│       └── UserIcons.jsx
+│
+├── /src/
+│   ├── /app/
+│   │   ├── _app.js
+│   │   ├── globals.css
+│   │   ├── layout.jsx
+│   │   ├── page.jsx
+│   │   ├── /context/
+│   │   │   └── CartContext.jsx
+│   │   ├── /hooks/
+│   │   │   └── useFetchWithAuth.jsx
+│   │   ├── /auth/
+│   │   │   ├── login/page.jsx
+│   │   │   ├── logout/page.jsx
+│   │   │   └── register/page.jsx
+│   │   ├── /orderCreate/page.jsx
+│   │   ├── /editOrder/[id]/page.jsx
+│   │   ├── /payment/[id]/page.jsx
+│   │   ├── /admin/
+│   │   │   ├── layout.jsx
+│   │   │   ├── page.jsx
+│   │   │   ├── menu/page.jsx
+│   │   │   ├── orders/page.jsx
+│   │   │   ├── table/page.jsx
+│   │   │   ├── users/page.jsx
+│   │   │   ├── transaction/page.jsx
+│   │   │   └── dashboard/
+│   │   │       ├── page.jsx
+│   │   │       └── components/StatCard.jsx
+│   │   │
+│   │   ├── /admin/components/
+│   │   │   ├── SideBar.jsx
+│   │   │   └── ToggleDarkMode.jsx
+│   │   ├── /(groups)/
+│   │   │   ├── layout.jsx
+│   │   │   ├── menulist/page.jsx
+│   │   │   ├── menulist/components/CartSidebar.jsx
+│   │   │   └── orderlist/page.jsx
+│
+├── /src/components/
+│   ├── navbar/Navbar.jsx
+│   ├── footer/Footer.jsx
+│   └── alert/Alert.jsx
+</pre>
+---
+
+## Fitur Utama
+Berikut beberapa endpoint penting (penjelasan lengkap bisa ditambahkan di dokumentasi Postman atau Swagger):
+- **Autentikasi JWT** dengan penyimpanan token di `localStorage`
+- **Manajemen Pesanan** (buat, edit, lihat)
+- **Halaman Dashboard Admin** (menu, user, meja, transaksi, laporan)
+- **Dark/Light Mode Toggle**
+- **Cart Sidebar** untuk pelayan/kasir
+- **Role-based Layout** untuk admin, kasir, pelayan
+- **Custom Hooks & Context** untuk pengelolaan state
+
+---
+
+## Catatan
+- Pastikan backend sudah berjalan di `http://localhost:5000`.
+- Semua API request terhubung ke base URL dari variabel `BASE_URL` di `.env`.
+- Disarankan menggunakan versi Node.js terbaru untuk kompatibilitas optimal.
+
+---
+
+## Credential Login
+- **Admin**:
+  - Username : `admin`
+  - Password : `Admin#1234`
+
+- **Kasir**:
+  - Username : `kasir`
+  - Password : `Kasir#1234`
+
+- **Pelayan**:
+  - Username : `pelayan`
+  - Password : `Pelayan#1234`
